@@ -7,14 +7,17 @@ export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
   const {
     celeb: { name },
   } = useCelebContext();
+  
 
   return (
     <div>
+      
       <div>
         <p>{value.date}</p>
       </div>
 
       <div>
+      
         {(value.type === 'quote' && (
           <div>
             <p>
@@ -24,12 +27,16 @@ export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
             <blockquote>
               <p>{value.quote}</p>
             </blockquote>
+            
           </div>
         )) ||
           (value.type == 'fact' && (
             <div>
               <p>{value.content}</p>
+              
             </div>
+           
+            
           ))}
       </div>
 
