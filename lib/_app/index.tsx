@@ -1,7 +1,8 @@
 import { AppProps } from 'next/app';
 import React from 'react';
 import { StaticPropsContextProvider } from '~/lib/components/StaticPropsContextProvider';
-import { AppBar } from '~/lib/_app/AppBar/AppBar';
+import AppBar1 from '~/lib/_app/AppBar/AppBar1';
+ 
 import { Footer } from '~/lib/_app/Footer/Footer';
 import { Head } from '~/lib/_app/Head/Head';
 
@@ -10,7 +11,7 @@ export const App = ({ Component, pageProps }: AppProps) => {
     <>
       <Head />
       <StaticPropsContextProvider value={pageProps}>
-        <AppBar />
+        <AppBar1 />
         <Component {...pageProps} />
         <Footer />
       </StaticPropsContextProvider>
