@@ -12,8 +12,10 @@ export const App = ({ Component, pageProps }: AppProps) => {
       <Head />
       <StaticPropsContextProvider value={pageProps}>
         <AppBar1 />
+       
         <Component {...pageProps} />
         <Footer />
+        
       </StaticPropsContextProvider>
     </>
   );

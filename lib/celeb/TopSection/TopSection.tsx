@@ -1,3 +1,4 @@
+import { Typography } from '@mui/material';
 import Image from 'next/image';
 import React from 'react';
 import { sanityImage } from '~/lib/components/sanityio';
@@ -9,9 +10,9 @@ export const TopSection = () => {
   const picture = context.celeb.picture || context.placeholderImage;
 
   return (
-    <div style={{ backgroundColor: '#FEF9E7' }}>
+    <div style={{ backgroundColor: '' }}>
       <section>
-        <header>
+        <header style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
           <div>
             <Image
               blurDataURL={picture.metadata.lqip}
@@ -25,8 +26,12 @@ export const TopSection = () => {
           </div>
 
           <h1>
+            <Typography textAlign="center">
             <span>Religion, politics, and ideas of</span>
-            <br /> <span>{context.celeb.name}</span>
+            <br /> <span style={{
+              fontSize: "32px"
+            }}>{context.celeb.name}</span>
+            </Typography>
           </h1>
         </header>
       </section>
