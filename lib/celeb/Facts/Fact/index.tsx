@@ -1,59 +1,84 @@
-import Link from 'next/link';
-import React from 'react';
-import { useCelebContext } from '~/lib/components/StaticPropsContextProvider';
-import { Fact as TFact } from '~/lib/components/types';
+import Link from "next/link";
+import React from "react";
+import Typography from "@mui/material/Typography";
+import { useCelebContext } from "~/lib/components/StaticPropsContextProvider";
+import { Fact as TFact } from "~/lib/components/types";
+import { Container } from "@mui/material";
 
 export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
   const {
     celeb: { name },
   } = useCelebContext();
-  
 
   return (
-    <div>
-      
+    <div
+      style={{
+        width: "100%",
+      }}
+    >
       <div>
-        <p>{value.date}</p>
+        {value.topics.map((e) => {
+          return (
+            <span key={e.name}>
+              <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+                {e.name}
+              </Typography>
+            </span>
+          );
+        })}
+      </div>
+      <div>
+        <Typography variant="caption" sx={{ fontWeight: 600 }}>
+          {value.date}
+        </Typography>
       </div>
 
       <div>
-      
-        {(value.type === 'quote' && (
+        {(value.type === "quote" && (
           <div>
-            <p>
-              {value.context}, {name} said
-            </p>
-
-            <blockquote>
-              <p>{value.quote}</p>
+            <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+              {value.context}, <em>{name} said: </em>
+            </Typography>
+            <blockquote color="black">
+              <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
+                {value.quote}
+              </Typography>
             </blockquote>
-            
           </div>
         )) ||
-          (value.type == 'fact' && (
+          (value.type == "fact" && (
+            
             <div>
-              <p>{value.content}</p>
-              
+              <Typography variant="h6" sx={{ fontWeight: 600 }}>
+                {value.content}
+              </Typography>
             </div>
-           
             
           ))}
       </div>
 
-      <div>
+      <div style={{ display: "flex" }}>
         {value.tags.map((t) => {
           return (
-            <p key={t.tag.name}>
-              # {t.isLowConfidence && 'Possibly '}
+            <Typography
+              key={t.tag.name}
+              sx={{ marginRight: "10px" }}
+              variant="caption"
+            >
+              # {t.isLowConfidence && "Possibly "}
               {t.tag.name}
-            </p>
+            </Typography>
           );
         })}
       </div>
 
-      <div>
-        <Link href={value.source}>Source</Link>
-        <Link href={value.forumLink}>Forum link</Link>
+      <div className="flex-end">
+        <Typography variant="subtitle1">
+          <Link href={value.source}>Source</Link>
+        </Typography>
+        <Typography variant="subtitle1" sx={{ marginLeft: "10px" }}>
+          <Link href={value.forumLink}>Forum link</Link>
+        </Typography>
       </div>
     </div>
   );
