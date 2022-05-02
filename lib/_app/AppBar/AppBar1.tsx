@@ -10,7 +10,8 @@ import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
-import { SwipeableDrawer } from "@mui/material";
+import { Container, SwipeableDrawer } from "@mui/material";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -23,7 +24,7 @@ const Search = styled("div")(({ theme }) => ({
   width: "100%",
   marginTop: "50px",
 }));
-//#142138e0
+
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
@@ -48,6 +49,14 @@ const StyledBox = styled(Box)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "light" ? "#fff" : "gray",
 }));
 
+const theme = createTheme({
+  palette: {
+    primary: { main: "#142138e0" },
+
+    secondary: { main: "#d1e3f3" },
+  },
+});
+
 export default function AppBar1() {
   const [state, setState] = useState(false);
 
@@ -66,55 +75,57 @@ export default function AppBar1() {
     };
 
   return (
-    <Box>
-      <AppBar position="static">
-        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Link passHref href="/">
-            <a>
-              <Image
-                src="/images/logo.svg"
-                width={250}
-                height={30}
-                alt="Hollowverse"
-                layout="fixed"
-              />
-            </a>
-          </Link>
-
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onClick={toggleDrawer(true)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <SwipeableDrawer
-            anchor="top"
-            open={state}
-            onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}
-          >
-            <Box
-              sx={{ width: "auto" }}
-              role="presentation"
-              onClick={() => toggleDrawer(false)}
-              onKeyDown={() => toggleDrawer(false)}
-            >
-              <Search>
-                <SearchIconWrapper>
-                  <SearchIcon />
-                </SearchIconWrapper>
-                <StyledInputBase
-                  placeholder="Search a celebrity…"
-                  inputProps={{ "aria-label": "search" }}
+    <ThemeProvider theme={theme}>
+      <Box>
+        <AppBar position="static">
+          <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Link passHref href="/">
+              <a>
+                <Image
+                  src="/images/logo.svg"
+                  width={250}
+                  height={30}
+                  alt="Hollowverse"
+                  layout="fixed"
                 />
-              </Search>
-            </Box>
-          </SwipeableDrawer>
-        </Toolbar>
-      </AppBar>
-    </Box>
+              </a>
+            </Link>
+
+            <IconButton
+              size="large"
+              edge="start"
+              color="inherit"
+              aria-label="open drawer"
+              onClick={toggleDrawer(true)}
+            >
+              <SearchIcon />
+            </IconButton>
+            <SwipeableDrawer
+              anchor="top"
+              open={state}
+              onClose={toggleDrawer(false)}
+              onOpen={toggleDrawer(true)}
+            >
+              <Box
+                sx={{ width: "auto" }}
+                role="presentation"
+                onClick={() => toggleDrawer(false)}
+                onKeyDown={() => toggleDrawer(false)}
+              >
+                <Search>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                    placeholder="Search a celebrity…"
+                    inputProps={{ "aria-label": "search" }}
+                  />
+                </Search>
+              </Box>
+            </SwipeableDrawer>
+          </Toolbar>
+        </AppBar>
+      </Box>
+    </ThemeProvider>
   );
 }

@@ -3,7 +3,7 @@ import React from "react";
 import Typography from "@mui/material/Typography";
 import { useCelebContext } from "~/lib/components/StaticPropsContextProvider";
 import { Fact as TFact } from "~/lib/components/types";
-import { Container } from "@mui/material";
+import { Chip, Container } from "@mui/material";
 
 export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
   const {
@@ -20,7 +20,10 @@ export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
         {value.topics.map((e) => {
           return (
             <span key={e.name}>
-              <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
+              <Typography
+                variant="subtitle1"
+                sx={{ fontWeight: 600, backgroundColor: "#d1e3f3" }}
+              >
                 {e.name}
               </Typography>
             </span>
@@ -39,7 +42,13 @@ export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
             <Typography variant="subtitle1" sx={{ fontWeight: 600 }}>
               {value.context}, <em>{name} said: </em>
             </Typography>
-            <blockquote color="black">
+            <blockquote
+              style={{
+                marginLeft: "8px",
+                padding: "1px 0 1px 16px",
+                borderLeft: "10px solid #142138e0",
+              }}
+            >
               <Typography variant="subtitle1" sx={{ fontWeight: 500 }}>
                 {value.quote}
               </Typography>
@@ -47,13 +56,11 @@ export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
           </div>
         )) ||
           (value.type == "fact" && (
-            
             <div>
               <Typography variant="h6" sx={{ fontWeight: 600 }}>
                 {value.content}
               </Typography>
             </div>
-            
           ))}
       </div>
 
@@ -73,12 +80,20 @@ export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
       </div>
 
       <div className="flex-end">
-        <Typography variant="subtitle1">
-          <Link href={value.source}>Source</Link>
-        </Typography>
-        <Typography variant="subtitle1" sx={{ marginLeft: "10px" }}>
-          <Link href={value.forumLink}>Forum link</Link>
-        </Typography>
+        <Chip
+          sx={{ padding: "5px", fontSize: "16px", backgroundColor: "#d1e3f3" }}
+          label="Source"
+          component="a"
+          href={value.source}
+          clickable
+        />
+        <Chip
+          sx={{ padding: "5px", fontSize: "16px", backgroundColor: "#d1e3f3" }}
+          label="Forum link"
+          component="a"
+          href={value.forumLink}
+          clickable
+        />
       </div>
     </div>
   );
