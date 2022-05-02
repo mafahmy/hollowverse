@@ -1,7 +1,8 @@
-import Image from 'next/image';
-import React from 'react';
-import { sanityImage } from '~/lib/components/sanityio';
-import { useCelebContext } from '~/lib/components/StaticPropsContextProvider';
+import { Typography } from "@mui/material";
+import Image from "next/image";
+import React from "react";
+import { sanityImage } from "~/lib/components/sanityio";
+import { useCelebContext } from "~/lib/components/StaticPropsContextProvider";
 
 export const TopSection = () => {
   const context = useCelebContext();
@@ -9,9 +10,16 @@ export const TopSection = () => {
   const picture = context.celeb.picture || context.placeholderImage;
 
   return (
-    <div style={{ backgroundColor: '#FEF9E7' }}>
+    <div style={{ backgroundColor: "" }}>
       <section>
-        <header>
+        <header
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            background: "linear-gradient(#f9e6f7, #61c7b4)",
+          }}
+        >
           <div>
             <Image
               blurDataURL={picture.metadata.lqip}
@@ -25,8 +33,19 @@ export const TopSection = () => {
           </div>
 
           <h1>
-            <span>Religion, politics, and ideas of</span>
-            <br /> <span>{context.celeb.name}</span>
+            <Typography color="white" textAlign="center">
+              <span style={{ fontSize: "24px" }}>
+                Religion, politics, and ideas of
+              </span>
+              <br />{" "}
+              <span
+                style={{
+                  fontSize: "38px",
+                }}
+              >
+                {context.celeb.name}
+              </span>
+            </Typography>
           </h1>
         </header>
       </section>

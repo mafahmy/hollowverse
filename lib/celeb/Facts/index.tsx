@@ -1,6 +1,7 @@
-import React from 'react';
-import { useCelebContext } from '~/lib/components/StaticPropsContextProvider';
-import { Fact } from '~/lib/celeb/Facts/Fact';
+import React from "react";
+import { useCelebContext } from "~/lib/components/StaticPropsContextProvider";
+import { Fact } from "~/lib/celeb/Facts/Fact";
+import { Container } from "@mui/material";
 
 export const Facts = () => {
   const context = useCelebContext();
@@ -8,24 +9,31 @@ export const Facts = () => {
 
   return (
     <div>
-      {topics.map((topic, i) => {
-        const factGroup = groups[topic];
+      <Container maxWidth="md">
+        {topics.map((topic, i) => {
+          const factGroup = groups[topic];
 
-        return (
-          <div key={`${topic}-${i}`}>
-            {factGroup.map((fact, innerI) => {
-              return (
-                <div
-                  key={`${topic}-${i}-${innerI}`}
-                  style={{ backgroundColor: '#F4ECF7' }}
-                >
-                  <Fact value={fact} />
-                </div>
-              );
-            })}
-          </div>
-        );
-      })}
+          return (
+            <div key={`${topic}-${i}`}>
+              {factGroup.map((fact, innerI) => {
+                return (
+                  <div
+                    key={`${topic}-${i}-${innerI}`}
+                    style={{
+                      backgroundColor: "#f6f6f7",
+                      display: "flex",
+                      margin: "0 0 15px 0",
+                      padding: "10px",
+                    }}
+                  >
+                    <Fact value={fact} />
+                  </div>
+                );
+              })}
+            </div>
+          );
+        })}
+      </Container>
     </div>
   );
 };
