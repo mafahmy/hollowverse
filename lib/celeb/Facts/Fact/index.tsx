@@ -81,14 +81,14 @@ export const Fact: React.FC<{ value: TFact }> = ({ value }) => {
 
       <div className="flex-end">
         <Chip
-          sx={{ padding: "5px", fontSize: "16px", backgroundColor: "#d1e3f3" }}
+          sx={{ padding: "5px", fontSize: "14px", backgroundColor: "#d1e3f3" }}
           label="Source"
           component="a"
           href={value.source}
           clickable
         />
         <Chip
-          sx={{ padding: "5px", fontSize: "16px", backgroundColor: "#d1e3f3" }}
+          sx={{ padding: "5px", fontSize: "14px", backgroundColor: "#d1e3f3" }}
           label="Forum link"
           component="a"
           href={value.forumLink}

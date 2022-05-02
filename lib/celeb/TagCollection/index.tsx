@@ -27,8 +27,10 @@ export const TagCollection = () => {
               sx={{
                 padding: "10px",
                 marginLeft: "5px",
-                fontSize: "18px",
+                fontSize: "16px",
+                fontWeight: "bold",
                 backgroundColor: "#61c7b4",
+                color: "white"
               }}
               key={t.tag.name}
               label={t.tag.name}
